@@ -1,0 +1,72 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>الصفحة الاولى </title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+<h1>تسجيل جديد </h1>
+    
+    <form action="page.html" method="post">
+        <label>الاسم </label>
+        <input type="text" name="name"><br>
+        <label>البريد الالكتروني </label>
+        <input type="email" name="email"><br>
+        <label>كلمة المرور </label>
+        <input type="password" name="password"><br>
+        <label>تاكيد كلمة المرور </label>
+        <input type="password" name="confirm_password"><br>
+        <label>رقم الهاتف </label>
+        <input type="number" name="phone"><br>
+        <button type="submit">تسجيل </button>
+    </form>
+
+          <h1>تسجسيل الدخول </h1>
+
+    <form action="page.html" method="post">
+        <label>البريد الالكتروني </label>
+        <input type="email" name="login_email"><br>
+        <label>كلمة المرور </label>
+        <input type="password" name="login_password"><br>
+        <button type="submit">دخول </button>
+    </form>
+         <a href="page.html">الصفحة الثانية </a>
+      <script>
+    //التحقق من فورم التسجيل 
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirm_password = document.getElementById('confirm_password').value;
+            const phone = document.getElementById('phone').value;
+            if (password !== confirm_password) {
+         alert('!كلمة المرور غير متطابقة');               
+                return('error');
+            }
+        // حفظ البيانات فيlocalStorage 
+            localStorage.setItem('name', name);
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+            localStorage.setItem('phone', phone);
+            window.location.href = 'page2.html';
+        });
+      //التحقق من فورم التسجيل 
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login_email').value;
+            const password = document.getElementById('login_password').value;
+      // التحقق من البيانات فيlocalStorage 
+            const storedEmail = localStorage.getItem('email');
+            const storedPassword = localStorage.getItem('password');
+            if (email === storedEmail && password === storedPassword) {
+                window.location.href = 'page2.html';
+            } else {
+         alert('!البريد اإللكتروني أو كلمة المرور غير صحيحة');                
+            }
+        });
+    </script>
+</body>
+</html>
